@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
@@ -18,10 +19,7 @@ export class FormComponent implements OnInit {
     mobileNo: '',
   };
 
-
-
-
-  constructor(private user:UserService) { }
+  constructor(private user:UserService,private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -46,7 +44,7 @@ export class FormComponent implements OnInit {
       (data) => {
         console.log(data);
         this.user.setUser(data);
-        window.location.href = '/userDetails';
+        this.router.navigate(['/userDetails'])
       },
       (error) => {
         console.log(error);
