@@ -33,7 +33,7 @@ export class FormComponent implements OnInit {
         this.userData.username
       )
     ) {
-      Swal.fire('', 'Invalid email address', 'warning');
+      Swal.fire('Invalid email address', 'Please try again', 'warning');
       return;
     }
     this.user.fetchUser(this.userData.username).subscribe(
@@ -41,16 +41,16 @@ export class FormComponent implements OnInit {
         console.log(data);
         if (data == null) {
           Swal.fire(
-            '',
-            'User not found...Please correct email address',
+            'User not found',
+            'Please insert correct email address',
             'warning'
           );
           return;
         }
         if (!data.enabled) {
           Swal.fire(
-            '',
-            'User is not verified...Please verify your email address',
+            'User is not verified',
+            'Please verify your email address',
             'warning'
           );
           return;
@@ -61,7 +61,7 @@ export class FormComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        Swal.fire( 'Something went wrong',  error.message, 'error');
+        Swal.fire('Something went wrong', error.message, 'error');
       }
     );
   }
